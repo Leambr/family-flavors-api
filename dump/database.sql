@@ -40,3 +40,27 @@ VALUES
         'Coupez les aubergines, les tomates et la mozzarella. Faire des couches de chaque ingrédient puis enfourner pendant une heure. Dégustez chaud.',
         true
     );
+INSERT INTO
+    recipes (
+        title,
+        description,
+        category,
+        sub_category,
+        serving,
+        prep_time,
+        cook_time,
+        instruction,
+        is_favorite
+    )
+VALUES
+    (
+        'Thieb',
+        'Une recette sénégalaise incroyable',
+        'Riz',
+        'Viande',
+        1,
+        1200,
+        3600,
+        'Coupez le poulet, faites cuire le riz avec les légumes. Dégustez chaud.',
+        true
+    );
