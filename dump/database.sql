@@ -2,7 +2,7 @@ CREATE DATABASE lea_cuisine_app;
 
 USE lea_cuisine_app;
 
-CREATE TABLE recipe (
+CREATE TABLE recipes (
 id INT PRIMARY KEY AUTO_INCREMENT,
 title VARCHAR(255) NOT NULL,
 category VARCHAR(50) NOT NULL,
@@ -12,12 +12,11 @@ prep_time INT NOT NULL,
 cook_time INT,
 method TEXT NOT NULL,
 image_url VARCHAR(255),
-ingredient_id INT,
 season_id INT,
 FOREIGN KEY (season_id) REFERENCES seasons(id)
 );
 
-CREATE TABLE ingredient (
+CREATE TABLE ingredients (
 id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL
 );
@@ -48,7 +47,7 @@ VALUES
     ('Hiver', '2023-12-22', '2024-03-19');
 
 -- Table des ingrédients
-INSERT INTO ingredient (name)
+INSERT INTO ingredients (name)
 VALUES
     ('Laitue romaine'), 
     ('Poulet'),
@@ -56,7 +55,7 @@ VALUES
     ('Poivron rouge');
 
 -- Table des recettes
-INSERT INTO recipe (title, category, diet_type, serving, prep_time, cook_time, method, image_url, season_id)
+INSERT INTO recipes (title, category, diet_type, serving, prep_time, cook_time, method, image_url, season_id)
 VALUES
     ('Salade César', 'Salades', 'Non végétarien', 2, 20, 15, 'Mélangez la laitue romaine, les croûtons, le parmesan et la vinaigrette.', 'url_image1.jpg', 1),
     ('Poulet Tikka Masala', 'Plats principaux', 'Non végétarien', 4, 30, 45, "Mélangez le poulet mariné avec la sauce tikka masala et faites cuire jusqu'à ce qu'il soit tendre.", 'url_image2.jpg', 2),

@@ -1,12 +1,13 @@
-const dbPool = require('../config/databaseConfig');
+import { dbPool } from '../config/databaseConfig.js';
+import * as Model from '../models/models.js';
 
-const getAll = (sqlQuery, modelName) => {
+export const getAll = (sqlQuery, modelName) => {
     return new Promise((resolve, reject) => {
         dbPool.query(sqlQuery, (error, result) => {
             if (error) {
                 reject(error);
             } else {
-                const ModelClass = require(`../models/${modelName}`);
+                const ModelClass = Model[modelName];
                 const modelData = result.map((data) => {
                     const model = new ModelClass();
                     Object.assign(model, data);
@@ -19,13 +20,13 @@ const getAll = (sqlQuery, modelName) => {
     });
 };
 
-const getById = (sqlQuery, modelName, id) => {
+export const getById = (sqlQuery, modelName, id) => {
     return new Promise((resolve, reject) => {
         dbPool.query(sqlQuery, [id], (error, result) => {
             if (error) {
                 reject(error);
             } else {
-                const ModelClass = require(`../models/${modelName}`);
+                const ModelClass = Model[modelName];
                 if (result.length === 0) {
                     reject(new Error('Aucun enregistrement trouvé.'));
                 } else {
@@ -39,9 +40,9 @@ const getById = (sqlQuery, modelName, id) => {
     });
 };
 
-const create = (sqlQuery, modelName, postData, table) => {
+export const create = (sqlQuery, modelName, postData, table) => {
     return new Promise((resolve, reject) => {
-        const ModelClass = require(`../models/${modelName}`);
+        const ModelClass = Model[modelName];
         const model = new ModelClass();
         Object.assign(model, postData);
 
@@ -66,7 +67,7 @@ const create = (sqlQuery, modelName, postData, table) => {
     });
 };
 
-const deleteById = (sqlQuery, modelName, id) => {
+export const deleteById = (sqlQuery, modelName, id) => {
     return new Promise((resolve, reject) => {
         dbPool.query(sqlQuery, [id], (error, result) => {
             if (error) {
@@ -81,11 +82,4 @@ const deleteById = (sqlQuery, modelName, id) => {
             }
         });
     });
-};
-
-module.exports = {
-    getAll,
-    getById,
-    create,
-    deleteById,
 };
