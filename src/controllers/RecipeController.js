@@ -11,4 +11,14 @@ export const recipeController = {
             res.status(500).json({ error: error.message });
         }
     },
+
+    getRecipeById: async (req, res) => {
+        try {
+            const recipe = await recipeService.getRecipeById(req.params.id);
+            const response = responseFormatter.formatResponse(res.statusCode, recipe);
+            res.json(response);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    },
 };
