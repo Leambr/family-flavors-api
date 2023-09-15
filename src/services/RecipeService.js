@@ -22,4 +22,27 @@ export const recipeService = {
             throw error;
         }
     },
+
+    createRecipe: async (recipe) => {
+        try {
+            const query = `INSERT INTO ${table.recipes} (title,
+                category,
+                diet_type,
+                serving,
+                prep_time,
+                cook_time,
+                method,
+                image_url) VALUES (${recipe.title}, ${recipe.category}, ${recipe.diet_type}, ${recipe.serving}, ${recipe.prep_time}, ${recipe.cook_time}, ${recipe.method}, ${recipe.image_url})`;
+
+            const result = await GlobalService.create(
+                query,
+                model.recipeModel,
+                recipe,
+                table.recipes
+            );
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    },
 };

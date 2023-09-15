@@ -46,6 +46,25 @@ export const create = (sqlQuery, modelName, postData, table) => {
         const model = new ModelClass();
         Object.assign(model, postData);
 
+        dbPool.query(sqlQuery, postData, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                const newDataId = result.insertId;
+                const query = `SELECT * FROM ${table} WHERE id = ${newDataId}`;
+                const postSend = getById(query, modelName, newDataId);
+                resolve(postSend);
+            }
+        });
+    });
+};
+
+export const createUser = (sqlQuery, modelName, postData, table) => {
+    return new Promise((resolve, reject) => {
+        const ModelClass = Model[modelName];
+        const model = new ModelClass();
+        Object.assign(model, postData);
+
         const missingProps = Object.keys(model).filter((prop) => model[prop] === undefined);
 
         if (missingProps.length > 0) {
