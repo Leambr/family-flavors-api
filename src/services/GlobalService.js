@@ -59,34 +59,30 @@ export const create = (sqlQuery, modelName, postData, table) => {
     });
 };
 
-export const createUser = (sqlQuery, modelName, postData, table) => {
+export const editById = (sqlQuery, modelName, postData, table, id) => {
     return new Promise((resolve, reject) => {
         const ModelClass = Model[modelName];
         const model = new ModelClass();
         Object.assign(model, postData);
 
-        const missingProps = Object.keys(model).filter((prop) => model[prop] === undefined);
-
-        if (missingProps.length > 0) {
-            reject(
-                new Error(`Données manquantes pour les propriétés : ${missingProps.join(', ')}`)
-            );
-        } else {
-            dbPool.query(sqlQuery, postData, (error, result) => {
-                if (error) {
-                    reject(error);
+        dbPool.query(sqlQuery, postData, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                const affectedRows = result.affectedRows;
+                if (affectedRows === 0) {
+                    reject(new Error("Aucun changement n'a été effectué"));
                 } else {
-                    const userId = result.insertId;
-                    const query = `SELECT * FROM ${table} WHERE id = ${userId}`;
-                    const postSend = getById(query, modelName, userId);
+                    const query = `SELECT * FROM ${table} WHERE id = ${id}`;
+                    const postSend = getById(query, modelName, id);
                     resolve(postSend);
                 }
-            });
-        }
+            }
+        });
     });
 };
 
-export const deleteById = (sqlQuery, modelName, id) => {
+export const deleteById = (sqlQuery, id) => {
     return new Promise((resolve, reject) => {
         dbPool.query(sqlQuery, [id], (error, result) => {
             if (error) {

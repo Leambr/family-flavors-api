@@ -47,4 +47,33 @@ export const recipeController = {
             res.status(500).json({ error: error.message });
         }
     },
+
+    editRecipe: async (req, res) => {
+        try {
+            const recipeId = req.params.id;
+            const updatedRecipeData = req.body;
+
+            const existingRecipe = await recipeService.getRecipeById(recipeId);
+
+            if (!existingRecipe) {
+                return res.status(404).json({ error: "La recette n'existe pas" });
+            }
+
+            const recipe = await recipeService.editRecipe(recipeId, updatedRecipeData);
+            const response = responseFormatter.formatResponse(res.statusCode, recipe);
+            res.json(response);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    },
+
+    deleteRecipeById: async (req, res) => {
+        try {
+            const recipe = await recipeService.deleteRecipeById(req.params.id);
+            const response = responseFormatter.deleteFormatResponse(res.statusCode, recipe);
+            res.json(response);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    },
 };

@@ -10,7 +10,7 @@ diet_type VARCHAR(50) NOT NULL,
 serving SMALLINT NOT NULL,
 prep_time INT NOT NULL,
 cook_time INT,
-method TEXT NOT NULL,
+instructions TEXT NOT NULL,
 image_url VARCHAR(255),
 season_id INT,
 FOREIGN KEY (season_id) REFERENCES seasons(id)
@@ -21,6 +21,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL
 );
 
+-- faire une table exprès pour les unités
 CREATE TABLE recipe_ingredient (
 id INT PRIMARY KEY AUTO_INCREMENT,
 recipe_id INT,
@@ -55,7 +56,7 @@ VALUES
     ('Poivron rouge');
 
 -- Table des recettes
-INSERT INTO recipes (title, category, diet_type, serving, prep_time, cook_time, method, image_url, season_id)
+INSERT INTO recipes (title, category, diet_type, serving, prep_time, cook_time, instructions, image_url, season_id)
 VALUES
     ('Salade César', 'Salades', 'Non végétarien', 2, 20, 15, 'Mélangez la laitue romaine, les croûtons, le parmesan et la vinaigrette.', 'url_image1.jpg', 1),
     ('Poulet Tikka Masala', 'Plats principaux', 'Non végétarien', 4, 30, 45, "Mélangez le poulet mariné avec la sauce tikka masala et faites cuire jusqu'à ce qu'il soit tendre.", 'url_image2.jpg', 2),

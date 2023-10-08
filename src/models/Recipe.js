@@ -7,7 +7,7 @@ export class Recipe {
         serving,
         prep_time,
         cook_time,
-        method,
+        instructions,
         image_url,
         season_id
     ) {
@@ -18,7 +18,7 @@ export class Recipe {
         this.serving = serving;
         this.prep_time = prep_time;
         this.cook_time = cook_time;
-        this.method = method;
+        this.instructions = instructions;
         this.image_url = image_url;
         this.season_id = season_id;
     }

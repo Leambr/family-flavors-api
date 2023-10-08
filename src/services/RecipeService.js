@@ -31,8 +31,8 @@ export const recipeService = {
                 serving,
                 prep_time,
                 cook_time,
-                method,
-                image_url) VALUES (${recipe.title}, ${recipe.category}, ${recipe.diet_type}, ${recipe.serving}, ${recipe.prep_time}, ${recipe.cook_time}, ${recipe.method}, ${recipe.image_url})`;
+                instructions,
+                image_url) VALUES (${recipe.title}, ${recipe.category}, ${recipe.diet_type}, ${recipe.serving}, ${recipe.prep_time}, ${recipe.cook_time}, ${recipe.instructions}, ${recipe.image_url})`;
 
             const result = await GlobalService.create(
                 query,
@@ -40,6 +40,80 @@ export const recipeService = {
                 recipe,
                 table.recipes
             );
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    editRecipe: async (id, updatedRecipeData) => {
+        try {
+            const query = `UPDATE ${table.recipes}
+            SET
+            title = ?,
+            category = ?,
+            diet_type = ?,
+            serving = ?,
+            prep_time = ?,
+            cook_time = ?,
+            method = ?,
+            image_url = ?, 
+            season_id = ?
+        WHERE id = ?`;
+
+            const {
+                title,
+                category,
+                diet_type,
+                serving,
+                prep_time,
+                cook_time,
+                method,
+                image_url,
+                season_id,
+            } = updatedRecipeData;
+
+            const result = await GlobalService.editById(
+                query,
+                model.recipeModel,
+                [
+                    id,
+                    title,
+                    category,
+                    diet_type,
+                    serving,
+                    prep_time,
+                    cook_time,
+                    method,
+                    image_url,
+                    season_id,
+                ],
+                table.recipes,
+                id
+            );
+
+            console.log('SQL Query:', query);
+            console.log('Parameters:', [
+                title,
+                category,
+                diet_type,
+                serving,
+                prep_time,
+                cook_time,
+                instructions,
+                image_url,
+                id,
+            ]);
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    deleteRecipeById: async (id) => {
+        try {
+            const query = `DELETE FROM ${table.recipes} WHERE id = ?`;
+            const result = await GlobalService.deleteById(query, id);
             return result;
         } catch (error) {
             throw error;
