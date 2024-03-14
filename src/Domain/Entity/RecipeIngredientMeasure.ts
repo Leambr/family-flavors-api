@@ -1,5 +1,5 @@
 export default class RecipeIngredientMeasure {
-    constructor(private id: string, private unit: string, private amount: number) {}
+    constructor(private id: number, private unit: string, private amount: number) {}
 
     public getId() {
         return this.id;

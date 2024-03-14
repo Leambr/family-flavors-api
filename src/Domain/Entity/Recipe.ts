@@ -3,7 +3,7 @@ import Season from './Season';
 
 export default class Recipe {
     constructor(
-        private id: string,
+        private id: number,
         private title: string,
         private diet_type: string,
         private serving: number,

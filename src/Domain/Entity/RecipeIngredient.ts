@@ -1,19 +1,19 @@
 export default class RecipeIngredient {
     constructor(
-        private readonly recipeId: string,
-        private readonly ingredientId: string,
-        private readonly recipeIngredientMeasureId: string
+        private readonly recipeId: number,
+        private readonly ingredientId: number,
+        private readonly recipeIngredientMeasureId: number
     ) {}
 
-    public getRecipeId(): string {
+    public getRecipeId() {
         return this.recipeId;
     }
 
-    public getIngredientId(): string {
+    public getIngredientId() {
         return this.ingredientId;
     }
 
-    public getRecipeIngredientMeasureId(): string {
+    public getRecipeIngredientMeasureId() {
         return this.recipeIngredientMeasureId;
     }
 }

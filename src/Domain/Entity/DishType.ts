@@ -3,7 +3,7 @@ import Recipe from './Recipe';
 export default class DishType {
     private recipes: Recipe[] = [];
 
-    constructor(private id: string, private name: string) {}
+    constructor(private id: number, private name: string) {}
 
     public getId() {
         return this.id;

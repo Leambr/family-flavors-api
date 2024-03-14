@@ -4,7 +4,7 @@ export default class Season {
     private recipes: Recipe[] = [];
 
     constructor(
-        private id: string,
+        private id: number,
         private name: string,
         private start_date: Date,
         private end_date: Date
