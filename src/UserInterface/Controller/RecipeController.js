@@ -1,5 +1,5 @@
-import { recipeService } from '../services/RecipeService.js';
-import * as responseFormatter from '../utils/helper/responseFormatter.js';
+import { recipeService } from '../../Infrastructure/Repository/RecipeRepository.js';
+import * as responseFormatter from '../../utils/helper/responseFormatter.js';
 
 export const recipeController = {
     getAllRecipes: async (_, res) => {

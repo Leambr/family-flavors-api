@@ -1,5 +1,9 @@
-import { dbPool } from '../config/databaseConfig.js';
-import * as Model from '../models/models.js';
+import { dbPool } from '../../config/databaseConfig.js';
+import * as Model from '../../Domain/models.js';
+
+// principe open close : rajouter un fichier pour une nouvelle fonctionnalité, pas modifier un fichier. Donc pour un gros projet attention
+//  principe solid :
+//  single responsability : une fonction/méthode doit avoir une seule responsabilité
 
 export const getAll = (sqlQuery, modelName) => {
     return new Promise((resolve, reject) => {
