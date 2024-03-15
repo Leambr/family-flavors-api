@@ -1,9 +1,9 @@
-import mysql from 'mysql2/promise';
+import mariadb from 'mariadb';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const dbPool = mysql.createPool({
+const dbPool = mariadb.createPool({
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT as string),
     user: process.env.DB_USER,
