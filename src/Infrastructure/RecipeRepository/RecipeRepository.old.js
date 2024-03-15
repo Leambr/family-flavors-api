@@ -1,6 +1,6 @@
 import * as model from '../../utils/constants/modelsConstants.js';
 import * as table from '../../utils/constants/tablesConstants.js';
-import * as GlobalService from './GlobalRepository.js';
+import * as GlobalService from '../GlobalRepository.old.js';
 
 export const recipeService = {
     getAllRecipes: async () => {
@@ -26,12 +26,12 @@ export const recipeService = {
     createRecipe: async (recipe) => {
         try {
             const query = `INSERT INTO ${table.recipes} (title,
-                diet_type,
+                dietType,
                 serving,
-                prep_time,
-                cook_time,
+                prepTime,
+                cookTime,
                 instruction,
-                image_url, season) VALUES (${recipe.title}, ${recipe.diet_type}, ${recipe.serving}, ${recipe.prep_time}, ${recipe.cook_time}, ${recipe.instruction}, ${recipe.image_url}, ${recipe.season})`;
+                imageUrl, season) VALUES (${recipe.title}, ${recipe.dietType}, ${recipe.serving}, ${recipe.prepTime}, ${recipe.cookTime}, ${recipe.instruction}, ${recipe.imageUrl}, ${recipe.season})`;
 
             const result = await GlobalService.create(
                 query,
@@ -50,22 +50,22 @@ export const recipeService = {
             const query = `UPDATE ${table.recipes}
             SET
             title = ?,
-            diet_type = ?,
+            dietType = ?,
             serving = ?,
-            prep_time = ?,
-            cook_time = ?,
+            prepTime = ?,
+            cookTime = ?,
             method = ?,
-            image_url = ?, 
+            imageUrl = ?, 
             season = ?
         WHERE id = ?`;
 
-            const { title, diet_type, serving, prep_time, cook_time, method, image_url, season } =
+            const { title, dietType, serving, prepTime, cookTime, method, imageUrl, season } =
                 updatedRecipeData;
 
             const result = await GlobalService.editById(
                 query,
                 model.recipeModel,
-                [id, title, diet_type, serving, prep_time, cook_time, method, image_url, season],
+                [id, title, dietType, serving, prepTime, cookTime, method, imageUrl, season],
                 table.recipes,
                 id
             );
@@ -73,12 +73,12 @@ export const recipeService = {
             console.log('SQL Query:', query);
             console.log('Parameters:', [
                 title,
-                diet_type,
+                dietType,
                 serving,
-                prep_time,
-                cook_time,
+                prepTime,
+                cookTime,
                 instruction,
-                image_url,
+                imageUrl,
                 id,
             ]);
             return result;

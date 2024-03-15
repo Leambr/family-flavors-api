@@ -4,10 +4,10 @@ export default class Season {
     private recipes: Recipe[] = [];
 
     constructor(
-        private id: number,
+        private id: number | null,
         private name: string,
-        private start_date: Date,
-        private end_date: Date
+        private startDate: Date,
+        private endDate: Date
     ) {}
 
     public getId() {
@@ -19,11 +19,11 @@ export default class Season {
     }
 
     public getStartDate() {
-        return this.start_date;
+        return this.startDate;
     }
 
     public getEndDate() {
-        return this.end_date;
+        return this.endDate;
     }
 
     public getRecipes() {

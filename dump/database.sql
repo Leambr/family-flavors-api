@@ -19,10 +19,10 @@ CREATE TABLE IF NOT EXISTS `recipe` (
     `cookTime` INT,
     `instruction` TEXT NOT NULL,
     `imageUrl` VARCHAR(255),
-    `season_id` INT,
-    `dishType_id` INT,
-    CONSTRAINT fk_recipe_season FOREIGN KEY (season_id) REFERENCES season(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_recipe_dishType FOREIGN KEY (dishType_id) REFERENCES dishType(id) ON DELETE CASCADE ON UPDATE CASCADE
+    `seasonId` INT,
+    `dishTypeId` INT,
+    CONSTRAINT fk_recipe_season FOREIGN KEY (seasonId) REFERENCES season(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_recipe_dishType FOREIGN KEY (dishTypeId) REFERENCES dishType(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE ingredient (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -37,13 +37,14 @@ CREATE TABLE recipe_ingredient_measure (
 
 
 CREATE TABLE recipe_ingredient (
-    `recipe_id` INT,
-    `ingredient_id` INT,
-    `recipe_ingredient_measure_id` INT,
-    PRIMARY KEY (recipe_id, ingredient_id),
-    FOREIGN KEY (recipe_id) REFERENCES recipe(id),
-    FOREIGN KEY (ingredient_id) REFERENCES ingredient(id),
-    FOREIGN KEY (recipe_ingredient_measure_id) REFERENCES recipe_ingredient_measure(id)
+    `recipeId` INT,
+    `ingredientId` INT,
+    `recipeIngredientMeasureId` INT,
+    PRIMARY KEY (recipeId, ingredientId),
+    FOREIGN KEY (recipeId) REFERENCES recipe(id),
+    FOREIGN KEY (ingredientId) REFERENCES ingredient(id),
+    FOREIGN KEY (recipeIngredientMeasureId) REFERENCES recipe_ingredient_measure(id)
 );
 
 INSERT INTO `dishType` (`id`, `name`) VALUES (1, 'Main Course');
+INSERT INTO `season` (`id`, `name`, `startDate`, `endDate`) VALUES (1, 'Printemps', '2021-03-20', '2021-06-20');

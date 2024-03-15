@@ -3,16 +3,16 @@ import Season from './Season';
 
 export default class Recipe {
     constructor(
-        private id: number,
+        private id: number | null,
         private title: string,
-        private diet_type: string,
+        private dietType: string,
         private serving: number,
-        private prep_time: number,
-        private cook_time: number,
+        private prepTime: number,
+        private cookTime: number,
         private instruction: string,
-        private image_url: string,
-        private season: Season,
-        private dish_type: DishType
+        private imageUrl: string,
+        private seasonId: number,
+        private dishTypeId: number
     ) {}
 
     public getId() {
@@ -24,7 +24,7 @@ export default class Recipe {
     }
 
     public getDietType() {
-        return this.diet_type;
+        return this.dietType;
     }
 
     public getServing() {
@@ -32,11 +32,11 @@ export default class Recipe {
     }
 
     public getPrepTime() {
-        return this.prep_time;
+        return this.prepTime;
     }
 
     public getCookTime() {
-        return this.cook_time;
+        return this.cookTime;
     }
 
     public getInstructions() {
@@ -44,14 +44,14 @@ export default class Recipe {
     }
 
     public getImageUrl() {
-        return this.image_url;
+        return this.imageUrl;
     }
 
-    public getSeason() {
-        return this.season;
+    public getSeasonId() {
+        return this.seasonId;
     }
 
-    public getDishType() {
-        return this.dish_type;
+    public getDishTypeId() {
+        return this.dishTypeId;
     }
 }

@@ -10,6 +10,6 @@ export interface RecipeBody {
     cookTime: number;
     instruction: string;
     imageUrl: string;
-    season: SeasonBody;
-    dishType: DishTypeBody;
+    seasonId: number;
+    dishTypeId: number;
 }
