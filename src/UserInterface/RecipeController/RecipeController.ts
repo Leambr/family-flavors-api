@@ -1,16 +1,20 @@
 import { Request, Response } from 'express';
 import CreateRecipeService from '../../Application/Recipe/CreateRecipeService';
 import FindAllRecipeService from '../../Application/Recipe/FindAllRecipeService';
+import FindRecipeByIdService from '../../Application/Recipe/FindRecipeByIdService';
 
 export default class RecipeController {
     private createRecipeService: CreateRecipeService;
+    private findRecipeByIdService: FindRecipeByIdService;
     private findAllRecipeService: FindAllRecipeService;
 
     constructor(
         createRecipeService: CreateRecipeService,
+        findRecipeByIdService: FindRecipeByIdService,
         findAllRecipeService: FindAllRecipeService
     ) {
         this.createRecipeService = createRecipeService;
+        this.findRecipeByIdService = findRecipeByIdService;
         this.findAllRecipeService = findAllRecipeService;
     }
 
@@ -39,6 +43,17 @@ export default class RecipeController {
                 seasonId,
                 dishTypeId,
             });
+
+            return res.json(recipe);
+        } catch (error: any) {
+            return res.status(500).json({ message: error.message });
+        }
+    }
+
+    public async findRecipeById(req: Request, res: Response): Promise<Response> {
+        try {
+            const id = parseInt(req.params.id);
+            const recipe = await this.findRecipeByIdService.findRecipeById(id);
 
             return res.json(recipe);
         } catch (error: any) {
