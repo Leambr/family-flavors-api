@@ -6,12 +6,14 @@ import SeasonRepository from '../Infrastructure/SeasonRepository/SeasonRepositor
 import RecipeController from '../UserInterface/RecipeController/RecipeController';
 import FindSeasonByIdService from '../Application/Season/FindSeasonByIdService';
 import FindDishTypeByIdService from '../Application/DishType/FindDishTypeByIdService';
+import FindAllRecipeService from '../Application/Recipe/FindAllRecipeService';
 
 export default class RecipeRouter {
     constructor(
         private recipeRepository = new RecipeRepository(),
         private dishTypeRepository = new DishTypeRepository(),
         private seasonRepository = new SeasonRepository(),
+        private findAllRecipeService = new FindAllRecipeService(recipeRepository),
         private findSeasonByIdService = new FindSeasonByIdService(seasonRepository),
         private findDishTypeByIdService = new FindDishTypeByIdService(dishTypeRepository),
         private createRecipeService = new CreateRecipeService(
@@ -19,7 +21,7 @@ export default class RecipeRouter {
             findDishTypeByIdService,
             findSeasonByIdService
         ),
-        private recipeController = new RecipeController(createRecipeService)
+        private recipeController = new RecipeController(createRecipeService, findAllRecipeService)
     ) {}
 
     public routes() {
@@ -27,7 +29,7 @@ export default class RecipeRouter {
         const controller = this.recipeController;
 
         router.route('/').post((req, res) => controller.createRecipe(req, res));
-        // router.route('/').get((req, res) => controller.findAllRecipe(req, res));
+        router.route('/').get((req, res) => controller.findAllRecipe(req, res));
         return router;
     }
 }

@@ -27,4 +27,17 @@ export default class RecipeRepository {
             connect.release();
         }
     }
+
+    public async findAll() {
+        const connect = await dbPool.getConnection();
+        const sql = this.queries.findAll;
+
+        try {
+            return await connect.query(sql);
+        } catch (error) {
+            throw new Error('There was an error querying table: Recipe -->' + error);
+        } finally {
+            connect.release();
+        }
+    }
 }
