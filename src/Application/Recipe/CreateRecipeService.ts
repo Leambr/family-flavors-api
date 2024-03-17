@@ -1,14 +1,14 @@
-import { DishType, Recipe, Season } from '../../Domain/models';
+import { Recipe } from '../../Domain/models';
 import DishTypeRepository from '../../Infrastructure/DishTypeRepository/DishTypeRepository';
 import RecipeRepository from '../../Infrastructure/RecipeRepository/RecipeRepository';
-import SeasonRepository from '../../Infrastructure/SeasonRepository/SeasonRepository';
+import FindSeasonByIdService from '../Season/FindSeasonByIdService';
 import { RecipeBody } from './recipe.interface';
 
 export default class CreateRecipeService {
     constructor(
         private readonly recipeRepository: RecipeRepository,
         private readonly dishTypeRepository: DishTypeRepository,
-        private readonly seasonRepository: SeasonRepository
+        private readonly findSeasonByIdService: FindSeasonByIdService
     ) {}
 
     public async createRecipe(recipe: RecipeBody) {
@@ -31,11 +31,8 @@ export default class CreateRecipeService {
             throw new Error('Image URL is too long.');
         }
 
-        const seasonData = await this.seasonRepository.findById(recipe.seasonId);
-        const season = seasonData[0];
-        console.log('🚀 ~ CreateRecipeService ~ createRecipe ~ season:', seasonData.id);
-
-        if (!seasonData) {
+        const season = await this.findSeasonByIdService.findById(recipe.seasonId);
+        if (!season) {
             throw new Error('Season not found.');
         }
 
@@ -59,7 +56,6 @@ export default class CreateRecipeService {
             dishType.id
         );
 
-        console.log('🚀 ~ CreateRecipeService ~ createRecipe ~ newRecipe:', newRecipe);
         return await this.recipeRepository.create(newRecipe).then((recipePacket) => {
             return {
                 id: parseInt(recipePacket.insertId),

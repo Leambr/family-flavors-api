@@ -4,16 +4,18 @@ import CreateRecipeService from '../Application/Recipe/CreateRecipeService';
 import DishTypeRepository from '../Infrastructure/DishTypeRepository/DishTypeRepository';
 import SeasonRepository from '../Infrastructure/SeasonRepository/SeasonRepository';
 import RecipeController from '../UserInterface/RecipeController/RecipeController';
+import FindSeasonByIdService from '../Application/Season/FindSeasonByIdService';
 
 export default class RecipeRouter {
     constructor(
         private recipeRepository = new RecipeRepository(),
         private dishTypeRepository = new DishTypeRepository(),
         private seasonRepository = new SeasonRepository(),
+        private findSeasonByIdService = new FindSeasonByIdService(seasonRepository),
         private createRecipeService = new CreateRecipeService(
             recipeRepository,
             dishTypeRepository,
-            seasonRepository
+            findSeasonByIdService
         ),
         private recipeController = new RecipeController(createRecipeService)
     ) {}
