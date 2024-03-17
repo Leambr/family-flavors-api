@@ -1,13 +1,13 @@
 import { Recipe } from '../../Domain/models';
-import DishTypeRepository from '../../Infrastructure/DishTypeRepository/DishTypeRepository';
 import RecipeRepository from '../../Infrastructure/RecipeRepository/RecipeRepository';
+import FindDishTypeByIdService from '../DishType/FindDishTypeByIdService';
 import FindSeasonByIdService from '../Season/FindSeasonByIdService';
 import { RecipeBody } from './recipe.interface';
 
 export default class CreateRecipeService {
     constructor(
         private readonly recipeRepository: RecipeRepository,
-        private readonly dishTypeRepository: DishTypeRepository,
+        private readonly findDishTypeByIdService: FindDishTypeByIdService,
         private readonly findSeasonByIdService: FindSeasonByIdService
     ) {}
 
@@ -36,10 +36,8 @@ export default class CreateRecipeService {
             throw new Error('Season not found.');
         }
 
-        const dishTypeData = await this.dishTypeRepository.findById(recipe.dishTypeId);
-        const dishType = dishTypeData[0];
-
-        if (!dishTypeData) {
+        const dishType = await this.findDishTypeByIdService.findById(recipe.dishTypeId);
+        if (!dishType) {
             throw new Error('Dish Type not found.');
         }
 
