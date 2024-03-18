@@ -3,7 +3,7 @@ import DishTypeRepository from '../../Infrastructure/DishTypeRepository/DishType
 export default class FindDishTypeByIdService {
     constructor(private readonly dishTypeRepository: DishTypeRepository) {}
 
-    public async findById(id: number) {
+    public async findDishTypeById(id: number) {
         const isIdMissing = !id;
         if (isIdMissing) {
             throw new Error('ID is required.');

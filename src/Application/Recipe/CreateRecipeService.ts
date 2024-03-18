@@ -36,7 +36,7 @@ export default class CreateRecipeService {
             throw new Error('Season not found.');
         }
 
-        const dishType = await this.findDishTypeByIdService.findById(recipe.dishTypeId);
+        const dishType = await this.findDishTypeByIdService.findDishTypeById(recipe.dishTypeId);
         if (!dishType) {
             throw new Error('Dish Type not found.');
         }

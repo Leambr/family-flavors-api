@@ -3,14 +3,17 @@ import DishTypeController from '../UserInterface/DishTypeController/DishTypeCont
 import DishTypeRepository from '../Infrastructure/DishTypeRepository/DishTypeRepository';
 import CreateDishTypeService from '../Application/DishType/CreateDishTypeService';
 import FindAllDishTypeService from '../Application/DishType/FindAllDishTypeService';
+import FindDishTypeByIdService from '../Application/DishType/FindDishTypeByIdService';
 
 export default class DishTypeRouter {
     constructor(
         private dishTypeRepository = new DishTypeRepository(),
         private createDishTypeService = new CreateDishTypeService(dishTypeRepository),
+        private findDishTypeByIdService = new FindDishTypeByIdService(dishTypeRepository),
         private findAllDishTypeService = new FindAllDishTypeService(dishTypeRepository),
         private dishTypeController = new DishTypeController(
             createDishTypeService,
+            findDishTypeByIdService,
             findAllDishTypeService
         )
     ) {}
@@ -49,7 +52,7 @@ export default class DishTypeRouter {
 
         /**
          * @swagger
-         * /api/dishType:
+         * /api/dishtype:
          *   post:
          *     tags:
          *      - DishType
@@ -73,7 +76,26 @@ export default class DishTypeRouter {
 
         /**
          * @swagger
-         * /api/dishType:
+         * /api/dishtype/{id}:
+         *   get:
+         *     tags:
+         *      - DishType
+         *     summary: Retrieve dish type by ID
+         *     parameters:
+         *      - name: id
+         *        in: path
+         *        required: true
+         *        schema:
+         *          type: string
+         *     responses:
+         *      200:
+         *          description: Retrieve dish type by ID
+         */
+        router.route('/:id').get((req, res) => controller.findDishTypeById(req, res));
+
+        /**
+         * @swagger
+         * /api/dishtype:
          *   get:
          *     tags:
          *      - DishType
