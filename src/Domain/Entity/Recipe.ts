@@ -39,7 +39,7 @@ export default class Recipe {
         return this.cookTime;
     }
 
-    public getInstructions() {
+    public getInstruction() {
         return this.instruction;
     }
 

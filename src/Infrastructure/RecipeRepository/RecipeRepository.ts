@@ -16,7 +16,7 @@ export default class RecipeRepository {
                 recipe.getServing(),
                 recipe.getPrepTime(),
                 recipe.getCookTime(),
-                recipe.getInstructions(),
+                recipe.getInstruction(),
                 recipe.getImageUrl(),
                 recipe.getSeasonId(),
                 recipe.getDishTypeId(),
@@ -45,6 +45,30 @@ export default class RecipeRepository {
 
         try {
             return await connect.query(sql);
+        } catch (error) {
+            throw new Error('There was an error querying table: Recipe -->' + error);
+        } finally {
+            connect.release();
+        }
+    }
+
+    public async update(id: number, recipe: Recipe) {
+        const connect = await dbPool.getConnection();
+        const sql = this.queries.update;
+
+        try {
+            return await connect.query(sql, [
+                recipe.getTitle(),
+                recipe.getDietType(),
+                recipe.getServing(),
+                recipe.getPrepTime(),
+                recipe.getCookTime(),
+                recipe.getInstruction(),
+                recipe.getImageUrl(),
+                recipe.getSeasonId(),
+                recipe.getDishTypeId(),
+                id,
+            ]);
         } catch (error) {
             throw new Error('There was an error querying table: Recipe -->' + error);
         } finally {

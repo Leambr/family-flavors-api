@@ -62,7 +62,7 @@ export default class CreateRecipeService {
                 serving: newRecipe.getServing(),
                 prepTime: newRecipe.getPrepTime(),
                 cookTime: newRecipe.getCookTime(),
-                instruction: newRecipe.getInstructions(),
+                instruction: newRecipe.getInstruction(),
                 imageUrl: newRecipe.getImageUrl(),
                 season: newRecipe.getSeasonId(),
                 dishType: newRecipe.getDishTypeId(),

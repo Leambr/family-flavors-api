@@ -22,7 +22,7 @@ export default class RecipeQueries {
     `;
 
     public readonly update = `
-    UPDATE recipe SET title = ?, dietType = ?, serving = ?, prepTime = ?, cookTime = ?, instruction = ?, imageUrl = ?, season = ?, dishType = ? WHERE id = ?
+    UPDATE recipe SET title = ?, dietType = ?, serving = ?, prepTime = ?, cookTime = ?, instruction = ?, imageUrl = ?, seasonId = ?, dishTypeId = ? WHERE id = ?
     `;
 
     public readonly delete = `
