@@ -18,7 +18,6 @@ export default class CreateDishTypeService {
             return {
                 id: parseInt(dishTypePacket.insertId),
                 name: newDishType.getName(),
-                recipes: newDishType.getRecipes(),
             };
         });
     }

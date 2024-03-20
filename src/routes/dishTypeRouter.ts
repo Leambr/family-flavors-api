@@ -4,6 +4,8 @@ import DishTypeRepository from '../Infrastructure/DishTypeRepository/DishTypeRep
 import CreateDishTypeService from '../Application/DishType/CreateDishTypeService';
 import FindAllDishTypeService from '../Application/DishType/FindAllDishTypeService';
 import FindDishTypeByIdService from '../Application/DishType/FindDishTypeByIdService';
+import UpdateDishTypeService from '../Application/DishType/UpdateDishTypeService';
+import DeleteDishTypeService from '../Application/DishType/DeleteDishTypeService';
 
 export default class DishTypeRouter {
     constructor(
@@ -11,10 +13,17 @@ export default class DishTypeRouter {
         private createDishTypeService = new CreateDishTypeService(dishTypeRepository),
         private findDishTypeByIdService = new FindDishTypeByIdService(dishTypeRepository),
         private findAllDishTypeService = new FindAllDishTypeService(dishTypeRepository),
+        private updateDishTypeService = new UpdateDishTypeService(
+            dishTypeRepository,
+            findDishTypeByIdService
+        ),
+        private deleteDishTypeService = new DeleteDishTypeService(dishTypeRepository),
         private dishTypeController = new DishTypeController(
             createDishTypeService,
             findDishTypeByIdService,
-            findAllDishTypeService
+            findAllDishTypeService,
+            updateDishTypeService,
+            deleteDishTypeService
         )
     ) {}
 
@@ -105,6 +114,10 @@ export default class DishTypeRouter {
          *          description: Retrieve list of dish types
          */
         router.route('/').get((req, res) => controller.findAllDishType(req, res));
+
+        router.route('/:id').put((req, res) => controller.updateDishType(req, res));
+
+        router.route('/:id').delete((req, res) => controller.deleteDishType(req, res));
 
         return router;
     }

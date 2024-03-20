@@ -43,4 +43,30 @@ export default class DishTypeRepository {
             connect.release();
         }
     }
+
+    public async update(id: number, dishType: DishType) {
+        const connect = await dbPool.getConnection();
+        const sql = this.queries.update;
+
+        try {
+            return await connect.query(sql, [dishType.getName(), id]);
+        } catch (error) {
+            throw new Error('There was an error querying table: DishType -->' + error);
+        } finally {
+            connect.release();
+        }
+    }
+
+    public async delete(id: number) {
+        const connect = await dbPool.getConnection();
+        const sql = this.queries.delete;
+
+        try {
+            return await connect.query(sql, id);
+        } catch (error) {
+            throw new Error('There was an error querying table: DishType -->' + error);
+        } finally {
+            connect.release();
+        }
+    }
 }
