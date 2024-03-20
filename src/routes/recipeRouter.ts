@@ -10,6 +10,7 @@ import FindAllRecipeService from '../Application/Recipe/FindAllRecipeService';
 import FindRecipeByIdService from '../Application/Recipe/FindRecipeByIdService';
 import UpdateRecipeService from '../Application/Recipe/UpdateRecipeService';
 import DeleteRecipeService from '../Application/Recipe/DeleteRecipeService';
+import { FindRecipeByDishTypeId } from '../Application/Recipe/FindRecipeByDishTypeIdService';
 
 export default class RecipeRouter {
     constructor(
@@ -26,6 +27,7 @@ export default class RecipeRouter {
             findRecipeByIdService
         ),
         private deleteRecipeService = new DeleteRecipeService(recipeRepository),
+        private findRecipeByDishTypeIdService = new FindRecipeByDishTypeId(recipeRepository),
         private findSeasonByIdService = new FindSeasonByIdService(seasonRepository),
         private findDishTypeByIdService = new FindDishTypeByIdService(dishTypeRepository),
         private createRecipeService = new CreateRecipeService(
@@ -40,7 +42,8 @@ export default class RecipeRouter {
             findRecipeByIdService,
             findAllRecipeService,
             updateRecipeService,
-            deleteRecipeService
+            deleteRecipeService,
+            findRecipeByDishTypeIdService
         )
     ) {}
 
@@ -204,6 +207,27 @@ export default class RecipeRouter {
          *          description: Recipe deleted
          */
         router.route('/:id').delete((req, res) => controller.deleteRecipe(req, res));
+
+        /**
+         * @swagger
+         * /api/recipe/dish/{dishTypeId}:
+         *   get:
+         *     tags:
+         *      - Recipe
+         *     summary: Retrieve recipe by dish type
+         *     parameters:
+         *      - name: dishTypeId
+         *        in: path
+         *        required: true
+         *        schema:
+         *          type: string
+         *     responses:
+         *      200:
+         *          description: Retrieve recipe by dish type
+         */
+        router
+            .route('/dish/:dishTypeId')
+            .get((req, res) => controller.findRecipeByDishTypeId(req, res));
 
         return router;
     }

@@ -88,4 +88,17 @@ export default class RecipeRepository {
             connect.release();
         }
     }
+
+    public async findRecipeByDishTypeId(dishTypeId: number) {
+        const connect = await dbPool.getConnection();
+        const sql = this.queries.findByDishTypeId;
+
+        try {
+            return await connect.query(sql, dishTypeId);
+        } catch (error) {
+            throw new Error('There was an error querying table: Recipe -->' + error);
+        } finally {
+            connect.release();
+        }
+    }
 }

@@ -28,4 +28,8 @@ export default class RecipeQueries {
     public readonly delete = `
     DELETE FROM recipe WHERE id = ?
     `;
+
+    public readonly findByDishTypeId = `
+    SELECT * FROM recipe WHERE dishTypeId = ?
+    `;
 }
