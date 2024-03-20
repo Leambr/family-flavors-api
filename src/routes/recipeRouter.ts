@@ -9,18 +9,23 @@ import FindDishTypeByIdService from '../Application/DishType/FindDishTypeByIdSer
 import FindAllRecipeService from '../Application/Recipe/FindAllRecipeService';
 import FindRecipeByIdService from '../Application/Recipe/FindRecipeByIdService';
 import UpdateRecipeService from '../Application/Recipe/UpdateRecipeService';
+import DeleteRecipeService from '../Application/Recipe/DeleteRecipeService';
 
 export default class RecipeRouter {
     constructor(
+        //Repository
         private recipeRepository = new RecipeRepository(),
         private dishTypeRepository = new DishTypeRepository(),
         private seasonRepository = new SeasonRepository(),
+
+        // Service
         private findRecipeByIdService = new FindRecipeByIdService(recipeRepository),
         private findAllRecipeService = new FindAllRecipeService(recipeRepository),
         private updateRecipeService = new UpdateRecipeService(
             recipeRepository,
             findRecipeByIdService
         ),
+        private deleteRecipeService = new DeleteRecipeService(recipeRepository),
         private findSeasonByIdService = new FindSeasonByIdService(seasonRepository),
         private findDishTypeByIdService = new FindDishTypeByIdService(dishTypeRepository),
         private createRecipeService = new CreateRecipeService(
@@ -28,11 +33,14 @@ export default class RecipeRouter {
             findDishTypeByIdService,
             findSeasonByIdService
         ),
+
+        // Controller
         private recipeController = new RecipeController(
             createRecipeService,
             findRecipeByIdService,
             findAllRecipeService,
-            updateRecipeService
+            updateRecipeService,
+            deleteRecipeService
         )
     ) {}
 
@@ -152,7 +160,50 @@ export default class RecipeRouter {
          */
         router.route('/:id').get((req, res) => controller.findRecipeById(req, res));
 
+        /**
+         * @swagger
+         * /api/recipe/{id}:
+         *   put:
+         *     tags:
+         *      - Recipe
+         *     summary: Update recipe by ID
+         *     parameters:
+         *      - name: id
+         *        in: path
+         *        required: true
+         *        schema:
+         *          type: string
+         *     requestBody:
+         *          required: true
+         *          content:
+         *              application/json:
+         *                  schema:
+         *                      $ref: '#/components/schemas/Recipe'
+         *
+         *     responses:
+         *      200:
+         *          description: Recipe updated
+         */
         router.route('/:id').put((req, res) => controller.updateRecipe(req, res));
+
+        /**
+         * @swagger
+         * /api/recipe/{id}:
+         *   delete:
+         *     tags:
+         *      - Recipe
+         *     summary: Delete recipe by ID
+         *     parameters:
+         *      - name: id
+         *        in: path
+         *        required: true
+         *        schema:
+         *          type: string
+         *     responses:
+         *      200:
+         *          description: Recipe deleted
+         */
+        router.route('/:id').delete((req, res) => controller.deleteRecipe(req, res));
 
         return router;
     }
