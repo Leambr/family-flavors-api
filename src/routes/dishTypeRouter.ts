@@ -115,8 +115,49 @@ export default class DishTypeRouter {
          */
         router.route('/').get((req, res) => controller.findAllDishType(req, res));
 
+        /**
+         * @swagger
+         * /api/dishtype/{id}:
+         *   put:
+         *     tags:
+         *      - DishType
+         *     summary: Update dish type by ID
+         *     parameters:
+         *      - name: id
+         *        in: path
+         *        required: true
+         *        schema:
+         *          type: string
+         *     requestBody:
+         *          required: true
+         *          content:
+         *              application/json:
+         *                  schema:
+         *                      $ref: '#/components/schemas/DishType'
+         *
+         *     responses:
+         *      200:
+         *          description: Dish type updated
+         */
         router.route('/:id').put((req, res) => controller.updateDishType(req, res));
 
+        /**
+         * @swagger
+         * /api/dishtype/{id}:
+         *   delete:
+         *     tags:
+         *      - DishType
+         *     summary: Delete dish type by ID
+         *     parameters:
+         *      - name: id
+         *        in: path
+         *        required: true
+         *        schema:
+         *          type: string
+         *     responses:
+         *      200:
+         *          description: Dish type deleted
+         */
         router.route('/:id').delete((req, res) => controller.deleteDishType(req, res));
 
         return router;
