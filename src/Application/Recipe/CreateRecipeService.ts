@@ -31,7 +31,7 @@ export default class CreateRecipeService {
             throw new Error('Image URL is too long.');
         }
 
-        const season = await this.findSeasonByIdService.findById(recipe.seasonId);
+        const season = await this.findSeasonByIdService.findSeasonById(recipe.seasonId);
         if (!season) {
             throw new Error('Season not found.');
         }

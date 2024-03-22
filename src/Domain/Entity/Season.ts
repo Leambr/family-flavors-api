@@ -1,8 +1,4 @@
-import Recipe from './Recipe';
-
 export default class Season {
-    private recipes: Recipe[] = [];
-
     constructor(
         private id: number | null,
         private name: string,
@@ -24,9 +20,5 @@ export default class Season {
 
     public getEndDate() {
         return this.endDate;
-    }
-
-    public getRecipes() {
-        return this.recipes;
     }
 }
