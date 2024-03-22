@@ -1,4 +1,3 @@
-import { RowDataPacket } from 'mysql2';
 import { Season } from '../../Domain/models';
 import dbPool from '../../config/databaseConfig';
 import SeasonQueries from './queries';

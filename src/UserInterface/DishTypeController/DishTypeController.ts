@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
+
 import CreateDishTypeService from '../../Application/DishType/CreateDishTypeService';
+import DeleteDishTypeService from '../../Application/DishType/DeleteDishTypeService';
 import FindAllDishTypeService from '../../Application/DishType/FindAllDishTypeService';
 import FindDishTypeByIdService from '../../Application/DishType/FindDishTypeByIdService';
 import UpdateDishTypeService from '../../Application/DishType/UpdateDishTypeService';
-import DeleteDishTypeService from '../../Application/DishType/DeleteDishTypeService';
+import { getErrorMessage } from '../../utils/helper/errorMessage';
 
 export default class DishTypeController {
     private createDishTypeService: CreateDishTypeService;
@@ -32,8 +34,10 @@ export default class DishTypeController {
             const dishType = await this.createDishTypeService.createDishType({ name });
 
             return res.json(dishType);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
@@ -43,18 +47,22 @@ export default class DishTypeController {
             const dishType = await this.findDishTypeByIdService.findDishTypeById(id);
 
             return res.json(dishType);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
-    public async findAllDishType(_: any, res: Response): Promise<Response> {
+    public async findAllDishType(_: Request, res: Response): Promise<Response> {
         try {
             const dishType = await this.findAllDishTypeService.findAllDishType();
 
             return res.json(dishType);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
@@ -64,9 +72,12 @@ export default class DishTypeController {
             const updatedDishType = req.body;
 
             const dishType = await this.updateDishTypeService.updateDishType(id, updatedDishType);
+
             return res.json(dishType);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
@@ -76,8 +87,10 @@ export default class DishTypeController {
             const dishType = await this.deleteDishTypeService.deleteDishType(id);
 
             return res.json(dishType);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 }
