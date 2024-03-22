@@ -1,5 +1,5 @@
 export default class Ingredient {
-    constructor(private id: number, private name: string) {}
+    constructor(private id: number | null, private name: string) {}
 
     public getId() {
         return this.id;
