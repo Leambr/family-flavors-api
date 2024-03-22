@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import CreateSeasonService from '../../Application/Season/CreateSeasonService';
 import DeleteSeasonService from '../../Application/Season/DeleteSeasonService';
 import FindAllSeasonService from '../../Application/Season/FindAllSeasonService';

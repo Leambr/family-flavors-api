@@ -1,5 +1,6 @@
 import { DishType } from '../../Domain/models';
 import DishTypeRepository from '../../Infrastructure/DishTypeRepository/DishTypeRepository';
+
 import { DishTypeBody } from './dishType.interface';
 
 export default class CreateDishTypeService {

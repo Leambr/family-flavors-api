@@ -1,7 +1,8 @@
 import { DishType } from '../../Domain/models';
 import DishTypeRepository from '../../Infrastructure/DishTypeRepository/DishTypeRepository';
-import FindDishTypeByIdService from './FindDishTypeByIdService';
+
 import { DishTypeBody } from './dishType.interface';
+import FindDishTypeByIdService from './FindDishTypeByIdService';
 
 export default class UpdateDishTypeService {
     constructor(

@@ -1,5 +1,6 @@
 import { Season } from '../../Domain/models';
 import SeasonRepository from '../../Infrastructure/SeasonRepository/SeasonRepository';
+
 import { SeasonBody } from './season.interface';
 
 export default class CreateSeasonService {

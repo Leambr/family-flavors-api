@@ -1,5 +1,6 @@
-import { Season } from '../../Domain/models';
 import dbPool from '../../config/databaseConfig';
+import { Season } from '../../Domain/models';
+
 import SeasonQueries from './queries';
 
 export default class SeasonRepository {
