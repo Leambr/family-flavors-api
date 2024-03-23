@@ -1,5 +1,6 @@
-import { DishType } from '../../Domain/models';
 import dbPool from '../../config/databaseConfig';
+import { DishType } from '../../Domain/models';
+
 import DishTypeQueries from './queries';
 
 export default class DishTypeRepository {

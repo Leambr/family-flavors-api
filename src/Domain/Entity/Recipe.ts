@@ -1,6 +1,3 @@
-import DishType from './DishType';
-import Season from './Season';
-
 export default class Recipe {
     constructor(
         private id: number | null,

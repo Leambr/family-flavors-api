@@ -1,5 +1,6 @@
-import { Recipe } from '../../Domain/models';
 import dbPool from '../../config/databaseConfig';
+import { Recipe } from '../../Domain/models';
+
 import RecipeQueries from './queries';
 
 export default class RecipeRepository {

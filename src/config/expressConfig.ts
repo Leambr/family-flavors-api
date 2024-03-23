@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
-import { Express } from 'express';
 import cors from 'cors';
+import { Express } from 'express';
 
 export default function expressConfig(app: Express) {
     app.use(cors());

@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
+
 import CreateRecipeService from '../../Application/Recipe/CreateRecipeService';
+import DeleteRecipeService from '../../Application/Recipe/DeleteRecipeService';
 import FindAllRecipeService from '../../Application/Recipe/FindAllRecipeService';
+import { FindRecipeByDishTypeId } from '../../Application/Recipe/FindRecipeByDishTypeIdService';
 import FindRecipeByIdService from '../../Application/Recipe/FindRecipeByIdService';
 import UpdateRecipeService from '../../Application/Recipe/UpdateRecipeService';
-import DeleteRecipeService from '../../Application/Recipe/DeleteRecipeService';
-import { FindRecipeByDishTypeId } from '../../Application/Recipe/FindRecipeByDishTypeIdService';
+import { getErrorMessage } from '../../utils/helper/errorMessage';
 
 export default class RecipeController {
     private createRecipeService: CreateRecipeService;
@@ -57,8 +59,10 @@ export default class RecipeController {
             });
 
             return res.json(recipe);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
@@ -68,18 +72,22 @@ export default class RecipeController {
             const recipe = await this.findRecipeByIdService.findRecipeById(id);
 
             return res.json(recipe);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
-    public async findAllRecipe(_: any, res: Response): Promise<Response> {
+    public async findAllRecipe(_: Request, res: Response): Promise<Response> {
         try {
             const recipe = await this.findAllRecipeService.findAllRecipe();
 
             return res.json(recipe);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
@@ -89,9 +97,12 @@ export default class RecipeController {
             const updatedRecipeData = req.body;
 
             const recipe = await this.updateRecipeService.updateRecipe(id, updatedRecipeData);
+
             return res.json(recipe);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
@@ -101,21 +112,24 @@ export default class RecipeController {
             const recipe = await this.deleteRecipeService.deleteRecipe(id);
 
             return res.json(recipe);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 
     public async findRecipeByDishTypeId(req: Request, res: Response): Promise<Response> {
         try {
             const dishTypeId = parseInt(req.params.dishTypeId);
-            const recipe = await this.findRecipeByDishTypeIdService.findRecipeByDishTypeId(
-                dishTypeId
-            );
+            const recipe =
+                await this.findRecipeByDishTypeIdService.findRecipeByDishTypeId(dishTypeId);
 
             return res.json(recipe);
-        } catch (error: any) {
-            return res.status(500).json({ message: error.message });
+        } catch (error) {
+            const { status, body } = getErrorMessage(error);
+
+            return res.status(status).json(body);
         }
     }
 }

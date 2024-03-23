@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+
 import expressConfig from './config/expressConfig';
 import routes from './routes/routes';
 

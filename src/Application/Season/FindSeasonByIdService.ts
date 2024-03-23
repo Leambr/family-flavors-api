@@ -8,6 +8,7 @@ export default class FindSeasonByIdService {
         if (isIdMissing) {
             throw new Error('ID is required.');
         }
+
         return await this.seasonRepository.findById(id).then((seasonPacket) => {
             return seasonPacket[0];
         });

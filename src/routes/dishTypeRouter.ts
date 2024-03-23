@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import DishTypeController from '../UserInterface/DishTypeController/DishTypeController';
-import DishTypeRepository from '../Infrastructure/DishTypeRepository/DishTypeRepository';
+
 import CreateDishTypeService from '../Application/DishType/CreateDishTypeService';
+import DeleteDishTypeService from '../Application/DishType/DeleteDishTypeService';
 import FindAllDishTypeService from '../Application/DishType/FindAllDishTypeService';
 import FindDishTypeByIdService from '../Application/DishType/FindDishTypeByIdService';
 import UpdateDishTypeService from '../Application/DishType/UpdateDishTypeService';
-import DeleteDishTypeService from '../Application/DishType/DeleteDishTypeService';
+import DishTypeRepository from '../Infrastructure/DishTypeRepository/DishTypeRepository';
+import DishTypeController from '../UserInterface/DishTypeController/DishTypeController';
 
 export default class DishTypeRouter {
     constructor(
