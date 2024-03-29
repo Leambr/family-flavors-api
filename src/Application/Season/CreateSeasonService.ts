@@ -1,7 +1,7 @@
 import { Season } from '../../Domain/models';
-import SeasonRepository from '../../Infrastructure/SeasonRepository/SeasonRepository';
+import SeasonRepository from '../../Infrastructure/Repository/SeasonRepository/SeasonRepository';
 
-import { SeasonBody } from './season.interface';
+import { SeasonBody } from '../../shared/types/season.interface';
 
 export default class CreateSeasonService {
     constructor(private readonly seasonRepository: SeasonRepository) {}

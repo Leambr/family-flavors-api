@@ -1,4 +1,4 @@
-import DishTypeRepository from '../../Infrastructure/DishTypeRepository/DishTypeRepository';
+import DishTypeRepository from '../../Infrastructure/Repository/DishTypeRepository/DishTypeRepository';
 
 export default class FindDishTypeByIdService {
     constructor(private readonly dishTypeRepository: DishTypeRepository) {}

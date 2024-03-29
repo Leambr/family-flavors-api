@@ -1,8 +1,9 @@
 import { Season } from '../../Domain/models';
-import SeasonRepository from '../../Infrastructure/SeasonRepository/SeasonRepository';
+import SeasonRepository from '../../Infrastructure/Repository/SeasonRepository/SeasonRepository';
+
+import { SeasonBody } from '../../shared/types/season.interface';
 
 import FindSeasonByIdService from './FindSeasonByIdService';
-import { SeasonBody } from './season.interface';
 
 export default class UpdateSeasonService {
     constructor(

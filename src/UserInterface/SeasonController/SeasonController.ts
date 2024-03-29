@@ -5,7 +5,7 @@ import DeleteSeasonService from '../../Application/Season/DeleteSeasonService';
 import FindAllSeasonService from '../../Application/Season/FindAllSeasonService';
 import FindSeasonByIdService from '../../Application/Season/FindSeasonByIdService';
 import UpdateSeasonService from '../../Application/Season/UpdateSeasonService';
-import { getErrorMessage } from '../../utils/helper/errorMessage';
+import { getErrorMessage } from '../shared/utils/errorMessage';
 
 export default class SeasonController {
     private createSeasonService: CreateSeasonService;

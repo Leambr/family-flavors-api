@@ -5,7 +5,7 @@ import DeleteSeasonService from '../Application/Season/DeleteSeasonService';
 import FindAllSeasonService from '../Application/Season/FindAllSeasonService';
 import FindSeasonByIdService from '../Application/Season/FindSeasonByIdService';
 import UpdateSeasonService from '../Application/Season/UpdateSeasonService';
-import SeasonRepository from '../Infrastructure/SeasonRepository/SeasonRepository';
+import SeasonRepository from '../Infrastructure/Repository/SeasonRepository/SeasonRepository';
 import SeasonController from '../UserInterface/SeasonController/SeasonController';
 
 export default class SeasonRouter {

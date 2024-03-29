@@ -5,7 +5,7 @@ import DeleteDishTypeService from '../../Application/DishType/DeleteDishTypeServ
 import FindAllDishTypeService from '../../Application/DishType/FindAllDishTypeService';
 import FindDishTypeByIdService from '../../Application/DishType/FindDishTypeByIdService';
 import UpdateDishTypeService from '../../Application/DishType/UpdateDishTypeService';
-import { getErrorMessage } from '../../utils/helper/errorMessage';
+import { getErrorMessage } from '../shared/utils/errorMessage';
 
 export default class DishTypeController {
     private createDishTypeService: CreateDishTypeService;

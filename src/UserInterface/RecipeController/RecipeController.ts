@@ -6,7 +6,7 @@ import FindAllRecipeService from '../../Application/Recipe/FindAllRecipeService'
 import { FindRecipeByDishTypeId } from '../../Application/Recipe/FindRecipeByDishTypeIdService';
 import FindRecipeByIdService from '../../Application/Recipe/FindRecipeByIdService';
 import UpdateRecipeService from '../../Application/Recipe/UpdateRecipeService';
-import { getErrorMessage } from '../../utils/helper/errorMessage';
+import { getErrorMessage } from '../shared/utils/errorMessage';
 
 export default class RecipeController {
     private createRecipeService: CreateRecipeService;

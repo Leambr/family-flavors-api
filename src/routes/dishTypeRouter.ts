@@ -5,7 +5,7 @@ import DeleteDishTypeService from '../Application/DishType/DeleteDishTypeService
 import FindAllDishTypeService from '../Application/DishType/FindAllDishTypeService';
 import FindDishTypeByIdService from '../Application/DishType/FindDishTypeByIdService';
 import UpdateDishTypeService from '../Application/DishType/UpdateDishTypeService';
-import DishTypeRepository from '../Infrastructure/DishTypeRepository/DishTypeRepository';
+import DishTypeRepository from '../Infrastructure/Repository/DishTypeRepository/DishTypeRepository';
 import DishTypeController from '../UserInterface/DishTypeController/DishTypeController';
 
 export default class DishTypeRouter {

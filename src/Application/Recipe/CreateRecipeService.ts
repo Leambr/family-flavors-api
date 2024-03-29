@@ -1,9 +1,9 @@
 import { Recipe } from '../../Domain/models';
-import RecipeRepository from '../../Infrastructure/RecipeRepository/RecipeRepository';
+import RecipeRepository from '../../Infrastructure/Repository/RecipeRepository/RecipeRepository';
+import { RecipeBody } from '../../shared/types/recipe.interface';
 import FindDishTypeByIdService from '../DishType/FindDishTypeByIdService';
 import FindSeasonByIdService from '../Season/FindSeasonByIdService';
 
-import { RecipeBody } from './recipe.interface';
 
 export default class CreateRecipeService {
     constructor(

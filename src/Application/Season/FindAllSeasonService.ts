@@ -1,4 +1,4 @@
-import SeasonRepository from '../../Infrastructure/SeasonRepository/SeasonRepository';
+import SeasonRepository from '../../Infrastructure/Repository/SeasonRepository/SeasonRepository';
 
 export default class FindAllSeasonService {
     constructor(private readonly seasonRepository: SeasonRepository) {}

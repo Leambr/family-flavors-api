@@ -1,23 +1,19 @@
-import dbPool from '../../config/databaseConfig';
-import { Season } from '../../Domain/models';
+import dbPool from '../../../config/databaseConfig';
+import { DishType } from '../../../Domain/models';
 
-import SeasonQueries from './queries';
+import DishTypeQueries from './queries';
 
-export default class SeasonRepository {
-    constructor(private queries = new SeasonQueries()) {}
+export default class DishTypeRepository {
+    constructor(private queries = new DishTypeQueries()) {}
 
-    public async create(season: Season) {
+    public async create(dishType: DishType) {
         const connect = await dbPool.getConnection();
         const sql = this.queries.create;
 
         try {
-            return await connect.query(sql, [
-                season.getName(),
-                season.getStartDate(),
-                season.getEndDate(),
-            ]);
+            return await connect.query(sql, [dishType.getName()]);
         } catch (error) {
-            throw new Error('There was an error querying table: Season -->' + error);
+            throw new Error('There was an error querying table: DishType -->' + error);
         } finally {
             connect.release();
         }
@@ -30,7 +26,7 @@ export default class SeasonRepository {
         try {
             return await connect.query(sql, id);
         } catch (error) {
-            throw new Error('There was an error querying table: Season -->' + error);
+            throw new Error('There was an error querying table: DishType -->' + error);
         } finally {
             connect.release();
         }
@@ -49,19 +45,14 @@ export default class SeasonRepository {
         }
     }
 
-    public async update(id: number, season: Season) {
+    public async update(id: number, dishType: DishType) {
         const connect = await dbPool.getConnection();
         const sql = this.queries.update;
 
         try {
-            return await connect.query(sql, [
-                season.getName(),
-                season.getStartDate(),
-                season.getEndDate(),
-                id,
-            ]);
+            return await connect.query(sql, [dishType.getName(), id]);
         } catch (error) {
-            throw new Error('There was an error querying table: Season -->' + error);
+            throw new Error('There was an error querying table: DishType -->' + error);
         } finally {
             connect.release();
         }
@@ -74,7 +65,7 @@ export default class SeasonRepository {
         try {
             return await connect.query(sql, id);
         } catch (error) {
-            throw new Error('There was an error querying table: Season -->' + error);
+            throw new Error('There was an error querying table: DishType -->' + error);
         } finally {
             connect.release();
         }

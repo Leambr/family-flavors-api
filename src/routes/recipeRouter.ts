@@ -8,9 +8,9 @@ import { FindRecipeByDishTypeId } from '../Application/Recipe/FindRecipeByDishTy
 import FindRecipeByIdService from '../Application/Recipe/FindRecipeByIdService';
 import UpdateRecipeService from '../Application/Recipe/UpdateRecipeService';
 import FindSeasonByIdService from '../Application/Season/FindSeasonByIdService';
-import DishTypeRepository from '../Infrastructure/DishTypeRepository/DishTypeRepository';
-import RecipeRepository from '../Infrastructure/RecipeRepository/RecipeRepository';
-import SeasonRepository from '../Infrastructure/SeasonRepository/SeasonRepository';
+import DishTypeRepository from '../Infrastructure/Repository/DishTypeRepository/DishTypeRepository';
+import RecipeRepository from '../Infrastructure/Repository/RecipeRepository/RecipeRepository';
+import SeasonRepository from '../Infrastructure/Repository/SeasonRepository/SeasonRepository';
 import RecipeController from '../UserInterface/RecipeController/RecipeController';
 
 export default class RecipeRouter {

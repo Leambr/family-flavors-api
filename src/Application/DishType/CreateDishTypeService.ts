@@ -1,7 +1,7 @@
 import { DishType } from '../../Domain/models';
-import DishTypeRepository from '../../Infrastructure/DishTypeRepository/DishTypeRepository';
+import DishTypeRepository from '../../Infrastructure/Repository/DishTypeRepository/DishTypeRepository';
 
-import { DishTypeBody } from './dishType.interface';
+import { DishTypeBody } from '../../shared/types/dishType.interface';
 
 export default class CreateDishTypeService {
     constructor(private readonly dishTypeRepository: DishTypeRepository) {}

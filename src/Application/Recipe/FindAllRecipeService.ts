@@ -1,4 +1,4 @@
-import RecipeRepository from '../../Infrastructure/RecipeRepository/RecipeRepository';
+import RecipeRepository from '../../Infrastructure/Repository/RecipeRepository/RecipeRepository';
 
 export default class FindAllRecipeService {
     constructor(private readonly recipeRepository: RecipeRepository) {}
