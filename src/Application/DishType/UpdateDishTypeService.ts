@@ -28,8 +28,8 @@ export default class UpdateDishTypeService {
 
         return await this.dishTypeRepository.update(id, updatedDishType).then(() => {
             return {
-                id: updatedDishType.getId(),
-                name: updatedDishType.getName(),
+                id: updatedDishType.id,
+                name: updatedDishType.name,
             };
         });
     }

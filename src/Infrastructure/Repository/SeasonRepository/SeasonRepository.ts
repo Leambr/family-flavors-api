@@ -11,11 +11,7 @@ export default class SeasonRepository {
         const sql = this.queries.create;
 
         try {
-            return await connect.query(sql, [
-                season.getName(),
-                season.getStartDate(),
-                season.getEndDate(),
-            ]);
+            return await connect.query(sql, [season.name, season.startDate, season.endDate]);
         } catch (error) {
             throw new Error('There was an error querying table: Season -->' + error);
         } finally {
@@ -54,12 +50,7 @@ export default class SeasonRepository {
         const sql = this.queries.update;
 
         try {
-            return await connect.query(sql, [
-                season.getName(),
-                season.getStartDate(),
-                season.getEndDate(),
-                id,
-            ]);
+            return await connect.query(sql, [season.name, season.startDate, season.endDate, id]);
         } catch (error) {
             throw new Error('There was an error querying table: Season -->' + error);
         } finally {

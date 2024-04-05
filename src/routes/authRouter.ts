@@ -9,7 +9,7 @@ export default class AuthRouter {
         const router = Router();
         const controller = this.controller;
 
-        router.route('/').post(controller.auth);
+        router.route('/login').post((req, res, next) => controller.auth(req, res, next));
 
         return router;
     }

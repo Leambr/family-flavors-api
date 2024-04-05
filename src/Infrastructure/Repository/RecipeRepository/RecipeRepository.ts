@@ -12,15 +12,15 @@ export default class RecipeRepository {
 
         try {
             return await connect.query(sql, [
-                recipe.getTitle(),
-                recipe.getDietType(),
-                recipe.getServing(),
-                recipe.getPrepTime(),
-                recipe.getCookTime(),
-                recipe.getInstruction(),
-                recipe.getImageUrl(),
-                recipe.getSeasonId(),
-                recipe.getDishTypeId(),
+                recipe.title,
+                recipe.dietType,
+                recipe.serving,
+                recipe.prepTime,
+                recipe.cookTime,
+                recipe.instruction,
+                recipe.imageUrl,
+                recipe.seasonId,
+                recipe.dishTypeId,
             ]);
         } catch (error) {
             throw new Error('There was an error querying table: Recipe -->' + error);
@@ -29,6 +29,7 @@ export default class RecipeRepository {
         }
     }
 
+    // findByRecipeId et faire une classe pour le paramètre --> repo pas finder
     public async findById(id: number) {
         const connect = await dbPool.getConnection();
         const sql = this.queries.findById;
@@ -59,15 +60,15 @@ export default class RecipeRepository {
 
         try {
             return await connect.query(sql, [
-                recipe.getTitle(),
-                recipe.getDietType(),
-                recipe.getServing(),
-                recipe.getPrepTime(),
-                recipe.getCookTime(),
-                recipe.getInstruction(),
-                recipe.getImageUrl(),
-                recipe.getSeasonId(),
-                recipe.getDishTypeId(),
+                recipe.title,
+                recipe.dietType,
+                recipe.serving,
+                recipe.prepTime,
+                recipe.cookTime,
+                recipe.instruction,
+                recipe.imageUrl,
+                recipe.seasonId,
+                recipe.dishTypeId,
                 id,
             ]);
         } catch (error) {

@@ -4,7 +4,6 @@ import { RecipeBody } from '../../shared/types/recipe.interface';
 import FindDishTypeByIdService from '../DishType/FindDishTypeByIdService';
 import FindSeasonByIdService from '../Season/FindSeasonByIdService';
 
-
 export default class CreateRecipeService {
     constructor(
         private readonly recipeRepository: RecipeRepository,
@@ -58,15 +57,15 @@ export default class CreateRecipeService {
         return await this.recipeRepository.create(newRecipe).then((recipePacket) => {
             return {
                 id: parseInt(recipePacket.insertId),
-                title: newRecipe.getTitle(),
-                dietType: newRecipe.getDietType(),
-                serving: newRecipe.getServing(),
-                prepTime: newRecipe.getPrepTime(),
-                cookTime: newRecipe.getCookTime(),
-                instruction: newRecipe.getInstruction(),
-                imageUrl: newRecipe.getImageUrl(),
-                season: newRecipe.getSeasonId(),
-                dishType: newRecipe.getDishTypeId(),
+                title: newRecipe.title,
+                dietType: newRecipe.dietType,
+                serving: newRecipe.serving,
+                prepTime: newRecipe.prepTime,
+                cookTime: newRecipe.cookTime,
+                instruction: newRecipe.instruction,
+                imageUrl: newRecipe.imageUrl,
+                season: newRecipe.seasonId,
+                dishType: newRecipe.dishTypeId,
             };
         });
     }

@@ -18,9 +18,6 @@ export default class AuthenticateService {
                 throw new Error('User not found');
             }
 
-            console.log('credentials', credentials);
-            console.log('user', user[0]);
-
             const isPasswordValid = this.authenticator.comparePassword(
                 credentials.password,
                 user[0].password

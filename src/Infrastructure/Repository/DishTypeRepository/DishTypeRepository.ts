@@ -11,7 +11,7 @@ export default class DishTypeRepository {
         const sql = this.queries.create;
 
         try {
-            return await connect.query(sql, [dishType.getName()]);
+            return await connect.query(sql, [dishType.name]);
         } catch (error) {
             throw new Error('There was an error querying table: DishType -->' + error);
         } finally {
@@ -50,7 +50,7 @@ export default class DishTypeRepository {
         const sql = this.queries.update;
 
         try {
-            return await connect.query(sql, [dishType.getName(), id]);
+            return await connect.query(sql, [dishType.name, id]);
         } catch (error) {
             throw new Error('There was an error querying table: DishType -->' + error);
         } finally {

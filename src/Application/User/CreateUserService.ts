@@ -34,9 +34,9 @@ export default class CreateUserService {
         return await this.userRepository.create(newUser).then((userPacket) => {
             return {
                 id: parseInt(userPacket.insertId),
-                email: newUser.getEmail(),
-                firstname: newUser.getFirstname(),
-                lastname: newUser.getLastname(),
+                email: newUser.email,
+                firstname: newUser.firstname,
+                lastname: newUser.lastname,
             };
         });
     }

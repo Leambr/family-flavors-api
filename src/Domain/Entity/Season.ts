@@ -1,24 +1,8 @@
 export default class Season {
     constructor(
-        private id: number | null,
-        private name: string,
-        private startDate: Date,
-        private endDate: Date
+        public id: number | null,
+        public name: string,
+        public startDate: Date,
+        public endDate: Date
     ) {}
-
-    public getId() {
-        return this.id;
-    }
-
-    public getName() {
-        return this.name;
-    }
-
-    public getStartDate() {
-        return this.startDate;
-    }
-
-    public getEndDate() {
-        return this.endDate;
-    }
 }

@@ -18,7 +18,7 @@ export default class CreateDishTypeService {
         return await this.dishTypeRepository.create(newDishType).then((dishTypePacket) => {
             return {
                 id: parseInt(dishTypePacket.insertId),
-                name: newDishType.getName(),
+                name: newDishType.name,
             };
         });
     }

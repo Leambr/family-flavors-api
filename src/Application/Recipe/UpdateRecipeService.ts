@@ -5,10 +5,11 @@ import { RecipeBody } from '../../shared/types/recipe.interface';
 
 import FindRecipeByIdService from './FindRecipeByIdService';
 
+// Handler plutôt que service
 export default class UpdateRecipeService {
     constructor(
         private readonly recipeRepository: RecipeRepository,
-        private readonly findRecipeByIdService: FindRecipeByIdService
+        private readonly findRecipeByIdService: FindRecipeByIdService // Recipefinder et le reciperepository permet d'écrire
     ) {}
 
     public async updateRecipe(id: number, recipeData: Partial<RecipeBody>) {
@@ -39,16 +40,16 @@ export default class UpdateRecipeService {
 
         return await this.recipeRepository.update(id, updatedRecipe).then(() => {
             return {
-                id: updatedRecipe.getId(),
-                title: updatedRecipe.getTitle(),
-                dietType: updatedRecipe.getDietType(),
-                serving: updatedRecipe.getServing(),
-                prepTime: updatedRecipe.getPrepTime(),
-                cookTime: updatedRecipe.getCookTime(),
-                instruction: updatedRecipe.getInstruction(),
-                imageUrl: updatedRecipe.getImageUrl(),
-                seasonId: updatedRecipe.getSeasonId(),
-                dishTypeId: updatedRecipe.getDishTypeId(),
+                id: updatedRecipe.id,
+                title: updatedRecipe.title,
+                dietType: updatedRecipe.dietType,
+                serving: updatedRecipe.serving,
+                prepTime: updatedRecipe.prepTime,
+                cookTime: updatedRecipe.cookTime,
+                instruction: updatedRecipe.instruction,
+                imageUrl: updatedRecipe.imageUrl,
+                seasonId: updatedRecipe.seasonId,
+                dishTypeId: updatedRecipe.dishTypeId,
             };
         });
     }

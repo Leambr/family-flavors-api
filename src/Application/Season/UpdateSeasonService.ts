@@ -28,10 +28,10 @@ export default class UpdateSeasonService {
 
         return await this.seasonRepository.update(id, updatedSeason).then(() => {
             return {
-                id: updatedSeason.getId(),
-                name: updatedSeason.getName(),
-                startDate: updatedSeason.getStartDate(),
-                endDate: updatedSeason.getEndDate(),
+                id: updatedSeason.id,
+                name: updatedSeason.name,
+                startDate: updatedSeason.startDate,
+                endDate: updatedSeason.endDate,
             };
         });
     }

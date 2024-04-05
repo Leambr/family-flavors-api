@@ -12,11 +12,11 @@ export default class UserRepository {
 
         try {
             return await connect.query(sql, [
-                user.getEmail(),
-                user.getPassword(),
-                user.getFirstname(),
-                user.getLastname(),
-                user.getRoles(),
+                user.email,
+                user.password,
+                user.firstname,
+                user.lastname,
+                user.roles,
             ]);
         } catch (error) {
             throw new Error('There was an error querying table: User -->' + error);

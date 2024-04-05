@@ -18,9 +18,9 @@ export default class CreateSeasonService {
         return await this.seasonRepository.create(newSeason).then((seasonPacket) => {
             return {
                 id: parseInt(seasonPacket.insertId),
-                name: newSeason.getName(),
-                startDate: newSeason.getStartDate(),
-                endDate: newSeason.getEndDate(),
+                name: newSeason.name,
+                startDate: newSeason.startDate,
+                endDate: newSeason.endDate,
             };
         });
     }
